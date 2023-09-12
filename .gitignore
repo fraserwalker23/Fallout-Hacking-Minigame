@@ -1,0 +1,7 @@
+.Rproj.user
+img/*.png
+img/*.PNG
+!img/readme_page.PNG
+**Thumbs.db
+R/tmp_game.R
+dict/example_bad.rds

@@ -1,0 +1,53 @@
+@font-face {
+    /* see: https://github.com/kika/fixedsys */
+    /* note this setup alone is insufficient to host on shinyapps.io */
+    font-family: "fixedsys"; 
+    src: url("FSEX302.ttf") format("truetype");
+}
+
+body { 
+    font-family: "fixedsys"; /* Font */
+    font-size: 2.5em; /* Font size */
+    color: #1dd767; /* text color */
+    background-color: #0e4e0b; /* Background color */
+}
+
+hr {
+    /* horizonal rule tag */
+    border:2px solid #1dd767;
+}
+
+div.col-sm-4 {
+    /* This is the side-panel w/ Text Input Guess box + Console log
+    /* No padding -- take up as much space as possible. */
+    /* Appear at bottom-right screen instead of default top.
+    /* border:2px solid #1dd767; */ /* Borders helpful for debugging or layout desgin */
+    margin: 0em;
+    padding: 0 0 0 0;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+#guess {
+    /* User Input Text Box: Guess */
+    /* Have the style of the font conform to rest of appv */
+    border:2px solid #1dd767;
+    font-size: 1em; /* Font size */
+    color: #1dd767; /* text color */
+    background-color: #0e4e0b; /* Background color */
+    padding: 0 0 0 0; /* Padding of the actual textbox relative to border */
+}
+
+/* Main Terminal area */
+/* No padding for area but for 2em in the Right of Column 1: buffer between 2 cols */
+div.col-sm-6 {
+    /*border:2px solid #1dd767;*/
+    margin: 0em;
+    padding: 0 0 0 0;
+}
+#terminal_col_1 {
+    /*border:2px solid #1dd767;*/
+    margin: 0em;
+    padding: 0 2em 0 0;
+}
