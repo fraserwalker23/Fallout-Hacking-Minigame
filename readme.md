@@ -4,6 +4,8 @@
 
 The computer hacking minigame from [Fallout 3](https://en.wikipedia.org/wiki/Fallout_3) created by Bethesda Game Studios, here recreated in [R Shiny](https://www.rstudio.com/products/shiny/).
 
+[**Playable Link**](https://fearless-mastermind.shinyapps.io/FalloutHackingMinigame/)
+
 ## Acknowledgements
 
 - The sample dictionary `sgb-words.txt` I used to build the game is from [Professor Donald Knuth of Stanford University](https://www-cs-faculty.stanford.edu/~knuth/).

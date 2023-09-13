@@ -1,0 +1,13 @@
+name: FalloutHackingMinigame
+title: FalloutHackingMinigame
+username: fearless-mastermind
+account: fearless-mastermind
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9854708
+bundleId: 7681547
+url: https://fearless-mastermind.shinyapps.io/FalloutHackingMinigame/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .gitattributes|dict/example_bad.rds|dict/raw/sgb_words.txt|hacking.html|hacking.Rmd|readme.md

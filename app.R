@@ -10,6 +10,19 @@ source(here::here("R", "preprocess_guess.R"))
 
 dict = dict_import("sgb_words.rds")
 
+# for accessing the filesys font in shinyapps.io
+if(Sys.info()[['sysname']] == "Linux"){
+  font_directory = '~/.fonts'
+  if(!dir.exists(font_directory)){
+    message("Directory '",font_directory, "' not found. Creating.")
+    dir.create(font_directory)
+  }
+  # middle step: download the font file to ~/.fonts ?
+  file.copy(from = here::here("www", "FSEX302.ttf"), to = font_directory)
+  system('fc-cache -f ~/.fonts')
+}
+
+
 # javascript to listen for an Enter press.
 # https://stackoverflow.com/questions/31415301/shiny-responds-to-enter
 js_press_enter = '
@@ -19,12 +32,27 @@ $(document).on("keyup", function(e) {
   }
 });
 '
+
+js_repaint = '
+causeRepaintsOn = $("h1, h2, h3, p");
+$(window).resize(function() {
+  causeRepaintsOn.css("z-index", 1);
+});
+'
                     
 reset_code = "X"                    
 
 ui = fluidPage(
-  # css style sheet
-  tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "computer_terminal.css")),
+  title="Fallout Hacking Minigame",
+  # css style sheet, iFram resizer
+  tags$head(
+    tags$script(src="U:/node_modules/iframe-resizer/iframeResizer.contentWindow.min.js", 
+                type="text/javascript"),
+    tags$script(js_repaint, type="text/javascript"),
+    tags$link(rel = "stylesheet", type = "text/css", href = "computer_terminal.css")
+  ),
+  # https://css-tricks.com/viewport-sized-typography/
+  #tags$script(js_repaint),
   # javascript to observe Enter presses
   tags$script(js_press_enter),
   fluidRow(
@@ -36,24 +64,30 @@ ui = fluidPage(
       8,
       "ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL", br(),
       "ENTER PASSWORD NOW", br(), br(),
-      textOutput("attempts_left_display"), # Blocks to indicate number
+      uiOutput("attempts_left_display"), # Blocks to indicate number
       hr(),
-      column(
-        6,
-        uiOutput("terminal_col_1")
-      ),
-      column(
-        6,
-        uiOutput("terminal_col_2")
+      fluidRow(
+        column(
+          width = 12,
+          offset = 0,
+          uiOutput("terminal_col_1")
+        )#,
+        # column(
+        #   width = 6,
+        #   offset = 0,
+        #   uiOutput("terminal_col_2")
+        # )
       )
     ),
     column(
       4,
       uiOutput("console_log"),
       br(),
-      textInput(inputId = "guess", label = NULL, value = ">")
+      textInput(inputId = "guess", label = NULL, value = ">"),
+      HTML('<div data-iframe-height></div>')
     )
-  )
+  )#,
+  #fluidRow(column(width=12, hr()))
 )
 
 
@@ -140,17 +174,19 @@ server = function(input, output, session){
   # })
   
   # UI elements to display to the player
-  output$attempts_left_display = renderText({
-    paste0(attempts_left(), " Attempt(s) Left: ", paste0(rep("*", attempts_left()), collapse = " "))
+  output$attempts_left_display = renderUI({
+    # &#x25AE; -> thick filled rectangle unicode
+    HTML(paste0(attempts_left(), " Attempt(s) Left: ", paste0(rep("&#x25AE;", attempts_left()), collapse = " ")))
   })
   
   output$terminal_col_1 = renderUI({
-    HTML(paste0(terminal_lines[1:17], collapse = "<br/>"))
+    # &nbsp; -> non-breaking space --> app honors consecutive whitespace
+    HTML(paste0(terminal_lines[1:17], paste0(rep(" &nbsp;", 4), collapse = " "), terminal_lines[18:34],collapse = "<br/>"))
   })
   
-  output$terminal_col_2 = renderUI({
-    HTML(paste0(terminal_lines[18:34], collapse = "<br/>"))
-  })
+  # output$terminal_col_2 = renderUI({
+  #   HTML(paste0(terminal_lines[18:34], collapse = "<br/>"))
+  # })
   
   output$console_log = renderUI({
     HTML(console_history())
@@ -158,6 +194,6 @@ server = function(input, output, session){
 }
 
 
-#shinyApp(ui = ui, server = server)
-runGadget(ui, server, viewer = dialogViewer("Fallout 3 Hacking Minigame", width = 932, height = 803))
+shinyApp(ui = ui, server = server)
+#runGadget(ui, server, viewer = dialogViewer("Fallout 3 Hacking Minigame", width = 932, height = 803))
 #runGadget(ui, server, viewer = paneViewer(minHeight = 500))

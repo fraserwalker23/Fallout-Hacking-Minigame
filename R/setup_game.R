@@ -34,10 +34,6 @@ setup_game = function(dict, n_char = 5){
   # combine
   word_choices = c(bottom5, top5, mid5)
   
-  if(any(is.na(word_choices))){
-    browser()
-  }
-  
   game_components = list(
     "answer" = answer,
     "options" = word_choices

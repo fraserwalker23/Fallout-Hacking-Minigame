@@ -1,0 +1,89 @@
+---
+title: "Fallout 3 Hacking Minigame"
+description: |
+  A modest attempt at recreating the computer hacking minigame from Fallout 3 in R Shiny.
+excerpt: |
+  A modest attempt at recreating the computer hacking minigame from Fallout 3 in R Shiny.
+author: Fraser Walker 
+date: "`r Sys.Date()`"
+#categories:
+tags: ["shiny", "html", "css"]
+output: html_document # comment out for blogdown
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!-- Note: this does embed my app *sortof* -- it doesn't load a game nor does it use the CSS within the iframe. -->
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.min.js"></script> -->
+<!-- <style> -->
+<!--   iframe { -->
+<!--     height: 450px; -->
+<!--     width: 400px; -->
+<!--     min-width: 100%; -->
+<!--   } -->
+<!-- </style> -->
+<!-- <p align="center"> -->
+<!-- <iframe id="myIframe" src="https://fearless-mastermind.shinyapps.io/FalloutHackingMinigame/" scrolling="no" frameborder="no" allow-same-origin="no"></iframe> -->
+<!-- </p> -->
+<!-- <script> -->
+<!--   iFrameResize({ -->
+<!--     heightCalculationMethod: 'taggedElement' -->
+<!--   }); -->
+<!-- </script> -->
+
+
+<iframe height="800" width="100%" frameborder="no" src="https://fearless-mastermind.shinyapps.io/FalloutHackingMinigame/"> </iframe>
+<br>
+
+
+**\#TODO** embed iFrame into post to host app? see: 
+
+- https://github.com/davidjbradshaw/iframe-resizer
+- https://www.cultureofinsights.com/post/responsive-iframes-for-shiny-apps
+- https://statsandr.com/blog/how-to-embed-a-shiny-app-in-blogdown/
+
+# Introduction
+
+That's right, *another* homemade version of the hacking minigame from [**Fallout 3**](https://en.wikipedia.org/wiki/Fallout_3). Though many versions already exist^[[All much better than mine.](https://github.com/search?q=Fallout+3+hacking+game&type=repositories)], I went and made my own anyways. Before going over the finished product, I want to walk the reader through the steps in how it was made, and explain the decision making that went into the design of the project.
+
+```{r, fig.align="center"}
+# Not how we'll embed photos in blogdown --
+knitr::include_graphics(path = here::here("img", "readme_page.PNG"))
+```
+
+# The Game
+
+The Game generates 20 words from a ***Dictionary*** and designates one as the Answer. The User has 4 Attempts to guess the Answer from the choices provided. With each guess, the Game determines if (a) the guess is correct then enter the Win state, or (b) the guess is incorrect, subtract an Attempt, and then if (i) no Attempts remaining then enter Lose state or (ii) calculate a ***Similarity*** score, display to User, and ask the User to guess again.
+
+```{r, fig.align="center", fig.cap="*Flow chart made in [Lucidspark](https://lucidspark.com/)*"}
+# Not how we'll embed photos in blogdown --
+knitr::include_graphics(path = here::here("img", "flow_chart.PNG"))
+```
+
+# The Dictionary
+
+- What dictionary I used to build
+- How I used `testthat` to validate a prospective dictionary. Intention is to be able to swap different dictionaries in and out.
+
+# Similarity Score
+
+- Define the Similarity Score. Will be used to determine word choices later on.
+
+# Setup
+
+- How the Game components are built. How the other word options are chosen subsequent to the Answer.
+- picture for `tmp_game.R`
+
+# Building the App in Shiny
+
+- Compromise, deviate from original game: user types guess themselves, does not select them. No 'blocks' for removing duds, resetting Attempts.
+- Designing the Game Layout
+- How the Terminal main screen was created: the nonsense chars, the line IDs.
+
+# Styling
+
+- The CSS
+- The Font choice
+- Fixing the size of the game
