@@ -5,13 +5,12 @@
     src: url("FSEX302.ttf") format("truetype");
 }
 
-/*
-body, html {
-    height: 100%;
-  }
-*/
-
 body {
+    margin: 0px;
+    padding: 0px;
+    /*display: flex;
+    flex-direction: row;
+    gap: 0px;*/
     font-family: "fixedsys"; /* Font */
     font-size: clamp(1rem,2.5vw,2.5rem); /* Font size */
     font-variant-ligatures: none;
@@ -25,34 +24,36 @@ hr {
     border:2px solid #1dd767;
 }
 
-/*
-div.containter-fluid {
-    height: 100%;
-}
-
-div#primary.row {
-    height: 100%;
-}
-
-table#container {
-    height: 100%;
-    border-collapse: collapse;
-}
-*/
-
 div.col-sm-4 {
     /* This is the side-panel w/ Text Input Guess box + Console log
     /* No padding -- take up as much space as possible. */
     /* Appear at bottom-right screen instead of default top. */
-    /*border:2px solid #1dd767;*/  /* Borders helpful for debugging or layout desgin */
-    margin: 0em;
-    padding: 0 0 0 0;
-    position: absolute;
-    /*height: 100%;*/
-    width: 33vw;
-    bottom: 1vw;
-    right: 1vw;
+    /*border: 2px solid #1dd767;*/  /* Borders helpful for debugging or layout desgin */
+    margin: 0px;
+    margin-right: 1vw;
+    padding: 0vw;
+    width: 31vw;
+    height: clamp(100px,79vw,780px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-self: stretch;
+    align-items: stretch; /* Down column if flex-direction = Row, Along row if flex-direction is column*/
+    justify-content: end; /* Across row if flex-direction = Row, Down column if flex-direction is column*/
+    /*position: absolute;*/
+    /*bottom: 1vw;
+    right: 1vw;*/
 }
+
+
+div.flex-space {
+    flex: 1;
+    /*border: 1px solid #1dd767;*/
+    margin: 0px;
+    padding: 0px;
+}
+
 
 #guess {
     /* User Input Text Box: Guess */
@@ -61,11 +62,12 @@ div.col-sm-4 {
     font-size: clamp(1rem,2.5vw,2.5rem); /* Font size */
     color: #1dd767; /* text color */
     background-color: #0e4e0b; /* Background color */
-    padding: 0; /* Padding of the actual textbox relative to border */
+    padding-bottom: 0vw; /* Padding of the actual textbox relative to border */
+    margin: 0px;
     /*width: 100%;*/
-    position: absolute;
+    /*position: absolute;
     bottom: 0vw;
-    right: 0vw;
+    right: 0vw;*/
 }
 
 /* Main Terminal area */
@@ -73,12 +75,16 @@ div.col-sm-4 {
 div.col-sm-8 {
     /*border:1px solid #1dd767;*/
     margin: 0vw;
-    padding-right: 1vw;
+    padding-right: 0vw;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     width: 66vw;
+    height: 90vh;
 }
 
 #terminal_col_1 {
     /*border:1px solid #1dd767;*/
     margin: 0vw;
-    padding: 1vw;
+    padding: 0vw;
 }

@@ -81,10 +81,11 @@ ui = fluidPage(
     ),
     column(
       4,
+      tags$div(class = "flex-space"),
       uiOutput("console_log"),
       br(),
-      textInput(inputId = "guess", label = NULL, value = ">"),
-      HTML('<div data-iframe-height></div>')
+      textInput(inputId = "guess", label = NULL, value = ">")
+      # ,HTML('<div data-iframe-height></div>')
     )
   )#,
   #fluidRow(column(width=12, hr()))
