@@ -3,5 +3,7 @@ img/*.png
 img/*.PNG
 !img/readme_page.PNG
 **Thumbs.db
+**.html
+**.Rmd
 R/tmp_game.R
 dict/example_bad.rds
