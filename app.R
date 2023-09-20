@@ -43,6 +43,7 @@ $(window).resize(function() {
 reset_code = "X"                    
 
 ui = fluidPage(
+  responsive = FALSE, # Responsive design. Experimenting.
   title="Fallout Hacking Minigame",
   # css style sheet, iFram resizer
   tags$head(
@@ -61,7 +62,7 @@ ui = fluidPage(
     # Attempts
     # Word Selection
     column(
-      8,
+      width = 8,
       "ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL", br(),
       "ENTER PASSWORD NOW", br(), br(),
       uiOutput("attempts_left_display"), # Blocks to indicate number
@@ -80,11 +81,12 @@ ui = fluidPage(
       )
     ),
     column(
-      4,
+      width = 4,
+      tags$div(class = "flex-space"),
       uiOutput("console_log"),
       br(),
-      textInput(inputId = "guess", label = NULL, value = ">")#,
-      #HTML('<div data-iframe-height></div>')
+      textInput(inputId = "guess", label = NULL, value = ">")
+      # ,HTML('<div data-iframe-height></div>')
     )
   )#,
   #fluidRow(column(width=12, hr()))
