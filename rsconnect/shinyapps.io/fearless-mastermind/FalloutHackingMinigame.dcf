@@ -5,7 +5,7 @@ account: fearless-mastermind
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9854708
-bundleId: 7692798
+bundleId: 7708534
 url: https://fearless-mastermind.shinyapps.io/FalloutHackingMinigame/
 version: 1
 asMultiple: FALSE

@@ -12,7 +12,7 @@ body {
     flex-direction: row;
     gap: 0px;*/
     font-family: "fixedsys"; /* Font */
-    font-size: clamp(1rem,2.5vw,2.5rem); /* Font size */
+    font-size: clamp(1.2rem,2.5vw,2.5rem); /* Font size */
     font-variant-ligatures: none;
     font-feature-settings: "liga" 0;
     color: #1dd767; /* text color */
@@ -25,19 +25,32 @@ hr {
 }
 
 div.container-fluid {
+    /*display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-self: flex-start;
+    column-gap: 0.5vw;*/
+    padding: 0px;
+    padding-left: 1rem;
+    margin: 0vw;
+    width: clamp(480px,99vw,1000px);
+    /*min-height: 300px;*/
+    height: 32em;
+    max-height: 100%;
+}
+
+div.row {
+    padding:0px;
+    margin:0px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-self: flex-start;
-    column-gap: 0.5vw;
-    padding: 0;
-    margin: 0vw;
-    margin-left: 0.5vw;
-    margin-right: 0.5vw;
-    width: clamp(370px,99vw,960px);
-    height: clamp(350px,95vh,800px);
-    position:absolute;
+    column-gap: 0vw;
+    width: 100%;
+    height: 100%;
 }
 
 div.col-sm-8 {
@@ -45,14 +58,15 @@ div.col-sm-8 {
     /* No padding for area but for 2% in the Right of Column 1: buffer between 2 cols */
     /*border:1px solid #1dd767;*/
     margin: 0vw;
-    padding-right: 0vw;
+    padding: 0vw;
     flex: 2;
-    position: static;
     /*display: flex;
     flex-direction: column;
     flex-wrap: wrap;*/
-    width: clamp(250px,66vw,650px);
-    height: clamp(350px,95vh,800px);
+    width: 66vw;
+    max-width: 100%;
+    height: 100%;
+    /*height: clamp(350px,95vh,100%);*/
 }
 
 div.col-sm-4 {
@@ -62,8 +76,10 @@ div.col-sm-4 {
     /*border: 1px solid #1dd767;*/  /* Borders helpful for debugging or layout desgin */
     margin: 0px;
     padding: 0vw;
-    width: clamp(120px,31vw,310px);
-    height: clamp(100px,79vw,800px);
+    width: 31vw;
+    max-width: 100%;
+    height: 100%;
+    /*height: clamp(100px,79vw,100%);*/
     flex: 1;
     display: flex;
     align-self: stretch;
@@ -78,17 +94,23 @@ div.col-sm-4 {
 
 div.flex-space {
     flex: 1;
+    height: 100%;
     /*border: 1px solid #1dd767;*/
     margin: 0px;
     padding: 0px;
 }
 
+.shiny-input-container:not(.shiny-input-container-inline) {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
 
 #guess {
     /* User Input Text Box: Guess */
     /* Have the style of the font conform to rest of appv */
     border:1px solid #1dd767;
-    font-size: clamp(1rem,2.5vw,2.5rem); /* Font size */
+    font-size: clamp(1.2rem,2.5vw,2.5rem); /* Font size */
     color: #1dd767; /* text color */
     background-color: #0e4e0b; /* Background color */
     padding: 0px; /* Padding of the actual textbox relative to border */
@@ -99,7 +121,25 @@ div.flex-space {
     right: 0vw;*/
 }
 
+@media screen and (max-width: 500px) {
+    #guess {
+        /* User Input Text Box: Guess */
+        /* Have the style of the font conform to rest of appv */
+        border:1px solid #0e4e0b;;
+        font-size: clamp(1.2rem,2.5vw,2.5rem); /* Font size */
+        color: #1dd767; /* text color */
+        background-color: #0e4e0b; /* Background color */
+        padding: 0px; /* Padding of the actual textbox relative to border */
+        margin: 0px;
+        /*width: 100%;*/
+        /*position: absolute;
+        bottom: 0vw;
+        right: 0vw;*/
+    }
+  }
 
+
+}
 
 #terminal_col_1 {
     /*border:1px solid #1dd767;*/
